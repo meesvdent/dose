@@ -31,20 +31,6 @@ import pylab as p
 import matplotlib.pyplot as plt
 from scipy import integrate
 
-# set time parameters of interest
-tmin = 0      # first time point of interest
-tmax = 108000  # last time point of interest
-tres = 1000    # time resolution of output
-
-# set dose profile
-dose_conc = [1,1,1] # in M
-dose_time = [-0.001,36000,72000] # in s
-
-I0 = 1  # initial concentration of unabsorbed compound
-Etot = 1  # total concentration of protein
-X0 = np.array([0,0,0])
-R = np.array([0.0001,0.05,10,1,1E6,0.001])
-
 # functions
 
 def I_of_t (t):
