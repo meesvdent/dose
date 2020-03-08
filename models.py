@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy
+from scipy import integrate
 
 class OneCompModel(object):
     def __init__(self, doses, kout, kabs):
@@ -27,8 +27,18 @@ class OneCompModel(object):
     def delta_abs(self, amount_unabs):
         return amount_unabs * self.kabs
 
+    def dIblood_dt(self, X, t):
+        dIb_dt = self.kabs * self.calc_unabs(t) - X[0] * self.kout
+        return dIb_dt
+
+    def dX_dt(self, X, t):
+        return np.array([self.dIblood_dt(X, t)])
+
     def intergrate(self, t):
-        scipy(int)
+        X0 = [0]
+        X, infodict = integrate.odeint(self.dX_dt, X0, t, full_output=True)
+        return X, infodict
+
 
 
 t = np.linspace(0, 1, 1000)
@@ -37,9 +47,7 @@ model = OneCompModel([[0.001, 5], [0.4, 5]], 0, 0.5)
 amount_unabs = model.calc_unabs(t)
 delta_abs = model.delta_abs(amount_unabs)
 
-plt.plot(t, amount_unabs)
-plt.show()
+X, infodict = model.intergrate(t)
 
-plt.plot(t, delta_abs)
+plt.plot(t, X)
 plt.show()
-
