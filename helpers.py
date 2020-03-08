@@ -23,3 +23,8 @@ def mass_to_mol(mass_list, molecular_mass):
 def calc_dose_conc(dose_masses, mol_mass, dis_vol):
     dose_mol = mass_to_mol(dose_masses, mol_mass)
     return mol_to_conc(dose_mol, dis_vol)
+
+
+def trans_thalf_ke(thalf):
+    ke = 0.693/(thalf)
+    return ke
