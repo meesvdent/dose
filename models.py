@@ -11,17 +11,23 @@ class OneCompModel(object):
         return f"model parameters: {self.doses}, {self.kout}, {self.kabs}"
 
     def calc_delta_abs(self, conc, t, dt):
-        delta_abs = conc * np.exp(-self.kabs * (t - dt))
+        delta_abs = conc - conc * np.exp(-self.kabs * (t - dt))
         return delta_abs
 
     def calc_unabs(self, t):
         tot = 0
         for dt, conc in self.doses:
-            tot += self.step(t - dt) * self.calc_delta_abs(conc, t, dt)
+            tot += self.step(t - dt) * -self.calc_delta_abs(conc, t, dt)
         return tot
 
     def d_abs(self, amount_unabs):
         return amount_unabs * self.kabs
+
+    def calc_tot_abs(self, t):
+        tot = 0
+        for dt, conc in self.doses:
+            tot += self.step(t - dt) * self.calc_delta_abs(conc, t, dt)
+        return tot
 
     def step(self, x):
         return 1 * (x > 0)
@@ -35,7 +41,12 @@ amount_unabs = model.calc_unabs(t)
 delta_abs = model.d_abs(amount_unabs)
 print(amount_unabs)
 print(delta_abs)
-plt.plot(t, amount_unabs)
-plt.plot(t, delta_abs)
+# plt.plot(t, amount_unabs)
+# plt.plot(t, delta_abs)
+# plt.show()
+
+tot_abs = model.calc_tot_abs(t)
+print(tot_abs)
+plt.plot(t, tot_abs)
 plt.show()
 
