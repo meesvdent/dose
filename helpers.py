@@ -3,9 +3,9 @@ def mol_to_conc(mol_amount, dis_vol):
     '''Takes iterable of molair amounts and return iterable of
     conc coresponding to given distribution volume.
 
-    :param mol_amount:
-    :param dis_vol:
-    :return: dose_conc
+    :param mol_amount: float list
+    :param dis_vol: float list
+    :return: dose_conc: float list
     '''
     dose_conc = []
     for mol in mol_amount:
