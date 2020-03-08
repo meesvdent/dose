@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import integrate
 
+
 class OneCompModel(object):
     def __init__(self, doses, kout, kabs):
         self.doses = doses
@@ -39,15 +40,3 @@ class OneCompModel(object):
         X, infodict = integrate.odeint(self.dX_dt, X0, t, full_output=True)
         return X, infodict
 
-
-
-t = np.linspace(0, 1, 1000)
-
-model = OneCompModel([[0.001, 5], [0.4, 5]], 0, 0.5)
-amount_unabs = model.calc_unabs(t)
-delta_abs = model.delta_abs(amount_unabs)
-
-X, infodict = model.intergrate(t)
-
-plt.plot(t, X)
-plt.show()
