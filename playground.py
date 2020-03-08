@@ -1,9 +1,9 @@
 import numpy as np
 from models import OneCompModel
 from helpers import calc_dose_conc, trans_thalf_ke
-import matplotlib.pyplot as plt
+from visualization import plot_conc
 
-t = np.linspace(0, 30000, 30000)
+t = np.linspace(0, 24*3600, 24*3600)
 
 dose = [0.160]  # grams, seconds
 time = [0.001]
@@ -25,5 +25,4 @@ delta_abs = model.delta_abs(amount_unabs)
 
 X, infodict = model.intergrate(t)
 
-plt.plot(t, X)
-plt.show()
+plot_conc(t, X, 2)
