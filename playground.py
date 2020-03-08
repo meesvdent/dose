@@ -1,7 +1,7 @@
 import numpy as np
 from models import OneCompModel
 from helpers import calc_dose_conc, trans_thalf_ke
-from visualization import plot_conc
+from visualisation import plot_conc
 
 t = np.linspace(0, 24*3600, 24*3600)
 
