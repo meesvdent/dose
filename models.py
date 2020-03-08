@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
 
 class OneCompModel(object):
     def __init__(self, doses, kout, kabs):
@@ -14,41 +15,31 @@ class OneCompModel(object):
         return 1 * (x > 0)
 
     def calc_delta_abs(self, conc, t, dt):
-        delta_abs = conc - conc * np.exp(-self.kabs * (t - dt))
+        delta_abs = conc * np.exp(-self.kabs * (t - dt))
         return delta_abs
 
     def calc_unabs(self, t):
         tot = 0
         for dt, conc in self.doses:
-            tot += self.step(t - dt) * -self.calc_delta_abs(conc, t, dt)
-        return tot
-
-    def d_abs(self, amount_unabs):
-        return amount_unabs * self.kabs
-
-    def calc_tot_abs(self, t):
-        tot = 0
-        for dt, conc in self.doses:
             tot += self.step(t - dt) * self.calc_delta_abs(conc, t, dt)
         return tot
 
-    def calc_blood
+    def delta_abs(self, amount_unabs):
+        return amount_unabs * self.kabs
 
+    def intergrate(self, t):
+        scipy(int)
 
 
 t = np.linspace(0, 1, 1000)
 
-model = OneCompModel([[0.001, 5], [0.4, 5]], 0, 1)
+model = OneCompModel([[0.001, 5], [0.4, 5]], 0, 0.5)
 amount_unabs = model.calc_unabs(t)
-delta_abs = model.d_abs(amount_unabs)
-print(amount_unabs)
-print(delta_abs)
-# plt.plot(t, amount_unabs)
-# plt.plot(t, delta_abs)
-# plt.show()
+delta_abs = model.delta_abs(amount_unabs)
 
-tot_abs = model.calc_tot_abs(t)
-print(tot_abs)
-plt.plot(t, tot_abs)
+plt.plot(t, amount_unabs)
+plt.show()
+
+plt.plot(t, delta_abs)
 plt.show()
 
