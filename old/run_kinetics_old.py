@@ -9,9 +9,9 @@ tmax = 30000  # last time point of interest
 tres = 30000   # time resolution of output
 
 # set dose profile
-dose_mass = [160E-3, 0,0] # in g
-dose_time = [1000,36000,72000] # in s
-molecularMass = 194.19 # Caffeine
+dose_mass = [160E-3, 0,0]  # in g
+dose_time = [1000,36000,72000]  # in s
+molecularMass = 194.19  # Caffeine
 
 I0 = 0  # initial concentration of unabsorbed compound
 Etot = 0  # total concentration of protein
