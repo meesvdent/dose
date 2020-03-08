@@ -10,6 +10,9 @@ class OneCompModel(object):
     def __str__(self):
         return f"model parameters: {self.doses}, {self.kout}, {self.kabs}"
 
+    def step(self, x):
+        return 1 * (x > 0)
+
     def calc_delta_abs(self, conc, t, dt):
         delta_abs = conc - conc * np.exp(-self.kabs * (t - dt))
         return delta_abs
@@ -29,8 +32,7 @@ class OneCompModel(object):
             tot += self.step(t - dt) * self.calc_delta_abs(conc, t, dt)
         return tot
 
-    def step(self, x):
-        return 1 * (x > 0)
+    def calc_blood
 
 
 
