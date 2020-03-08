@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 class OneCompModel(object):
     def __init__(self, doses, kout, kabs):
@@ -6,14 +7,31 @@ class OneCompModel(object):
         self.kout = kout
         self.kabs = kabs
 
-    def delta_absorb(self, t):
-        isum = 0
+    def __str__(self):
+        return f"model parameters: {self.doses}, {self.kout}, {self.kabs}"
+
+    def amount_n_abs(self, t):
+        tot = 0
         for dt, conc in self.doses:
-            isum += self.step(t - dt) * conc * np.exp(self.kabs * (t - dt))
-        return isum
+            tot += self.step(t - dt) * conc * np.exp(-self.kabs * (t - dt))
+        return tot
+
+    def d_abs(self, amount_n_abs):
+        return amount_n_abs * self.kabs
 
     def step(self, x):
         return 1 * (x > 0)
 
 
+
+t = np.linspace(0, 1, 1000)
+
+model = OneCompModel([[0.001, 5]], 0, 1)
+amount_unabs = model.amount_n_abs(t)
+delta_abs = model.d_abs(amount_unabs)
+print(amount_unabs)
+print(delta_abs)
+plt.plot(t, amount_unabs)
+plt.plot(t, delta_abs)
+plt.show()
 
