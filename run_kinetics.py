@@ -5,8 +5,8 @@ from scipy import integrate
 
 # set time parameters of interest
 tmin = 0      # first time point of interest
-tmax = 108000  # last time point of interest
-tres = 1000    # time resolution of output
+tmax = 30000  # last time point of interest
+tres = 2   # time resolution of output
 
 # set dose profile
 dose_mass = [160E-3, 0,0] # in g
@@ -18,13 +18,16 @@ Etot = 5  # total concentration of protein
 X0 = np.array([0,0,0])
 R = np.array([0.0055,0.0035,10,1,1E6,0.001])
 
+patientMass = 75  # kg
+DV = 0.625*patientMass  # L/kg
+
 # functions
 def dose_conc_func(dose_mass):
     doseMoll = []
     for mass in dose_mass:
         doseMoll.append(mass/molecularMass)
     dose_conc = []
-    for mol in dose_conc:
+    for mol in doseMoll:
         dose_conc.append(mol/DV)
     return(dose_conc)
 
@@ -59,6 +62,8 @@ def dX_dt(X,t):
     return np.array([dIblood_dt(X,t), dItissue_dt(X,t), df_dt(X,t)])
 
 dose_conc = dose_conc_func(dose_mass)
+
+print(dose_conc)
 
 t = np.linspace(tmin,tmax,tres)
 plt.plot(t,I_of_t(t))

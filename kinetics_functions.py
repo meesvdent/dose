@@ -27,7 +27,7 @@
 #
 
 import numpy as np
-import pylab as p
+#import pylab as p
 import matplotlib.pyplot as plt
 from scipy import integrate
 
