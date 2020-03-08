@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 class TestOneCompModel(TestCase):
-    def test_intergrate_zero_kout(self):
+    def test_integrate_zero_kout(self):
         from helpers import calc_dose_conc
         from models import OneCompModel
         import numpy as np
@@ -21,10 +21,9 @@ class TestOneCompModel(TestCase):
 
         model = OneCompModel(time_conc, 0, 0.5)
 
-        X, infodict = model.intergrate(t)
+        X, infodict = model.integrate(t)
 
         self.assertAlmostEqual(np.max(X), 1.149E-5, 4)
-
 
     def test_integrate_kout(self):
         from helpers import calc_dose_conc
@@ -44,9 +43,6 @@ class TestOneCompModel(TestCase):
 
         model = OneCompModel(time_conc, 0.0045, 0.0055)
 
-        X, infodict = model.intergrate(t)
-
-        plt.plot(t, X)
-        print(max(X))
+        X, infodict = model.integrate(t)
 
         self.assertAlmostEqual(np.max(X), 4.43209211e-06, 4)

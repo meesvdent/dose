@@ -23,7 +23,7 @@ model = OneCompModel(time_conc, ke, 0.0055)
 amount_unabs = model.calc_unabs(t)
 delta_abs = model.delta_abs(amount_unabs)
 
-X, infodict = model.intergrate(t)
+X, infodict = model.integrate(t)
 
 plt.plot(t, X)
 plt.show()

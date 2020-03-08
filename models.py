@@ -3,13 +3,13 @@ from scipy import integrate
 
 
 class OneCompModel(object):
-    def __init__(self, doses, kout, kabs):
+    def __init__(self, doses, ke, kabs):
         self.doses = doses
-        self.kout = kout
+        self.ke = ke
         self.kabs = kabs
 
     def __str__(self):
-        return f"model parameters: {self.doses}, {self.kout}, {self.kabs}"
+        return f"model parameters: {self.doses}, {self.ke}, {self.kabs}"
 
     def step(self, x):
         return 1 * (x > 0)
@@ -28,13 +28,13 @@ class OneCompModel(object):
         return amount_unabs * self.kabs
 
     def dIblood_dt(self, X, t):
-        dIb_dt = self.kabs * self.calc_unabs(t) - X[0] * self.kout
+        dIb_dt = self.kabs * self.calc_unabs(t) - X[0] * self.ke
         return dIb_dt
 
     def dX_dt(self, X, t):
         return np.array([self.dIblood_dt(X, t)])
 
-    def intergrate(self, t):
+    def integrate(self, t):
         X0 = [0]
         X, infodict = integrate.odeint(self.dX_dt, X0, t, full_output=True)
         return X, infodict
