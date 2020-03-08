@@ -6,17 +6,17 @@ from scipy import integrate
 # set time parameters of interest
 tmin = 0      # first time point of interest
 tmax = 30000  # last time point of interest
-tres = 2   # time resolution of output
+tres = 30000   # time resolution of output
 
 # set dose profile
 dose_mass = [160E-3, 0,0] # in g
 dose_time = [1000,36000,72000] # in s
 molecularMass = 194.19 # Caffeine
 
-I0 = 1  # initial concentration of unabsorbed compound
-Etot = 5  # total concentration of protein
+I0 = 0  # initial concentration of unabsorbed compound
+Etot = 0  # total concentration of protein
 X0 = np.array([0,0,0])
-R = np.array([0.0055,0.0035,10,1,1E6,0.001])
+R = np.array([0.0055, 0.00035,1E-10,1,1E-6,0.001])
 
 patientMass = 75  # kg
 DV = 0.625*patientMass  # L/kg
