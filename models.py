@@ -3,6 +3,8 @@ from scipy import integrate
 
 
 class OneCompModel(object):
+    X0 = [0]
+    
     def __init__(self, doses, ke, kabs):
         self.doses = doses
         self.ke = ke
@@ -35,7 +37,6 @@ class OneCompModel(object):
         return np.array([self.dIblood_dt(X, t)])
 
     def integrate(self, t):
-        X0 = [0]
-        X, infodict = integrate.odeint(self.dX_dt, X0, t, full_output=True)
+        X, infodict = integrate.odeint(self.dX_dt, self.X0, t, full_output=True)
         return X, infodict
 
