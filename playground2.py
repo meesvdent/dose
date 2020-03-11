@@ -27,3 +27,5 @@ print(X)
 plt.plot(X, t)
 plt.show()
 
+
+

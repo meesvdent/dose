@@ -1,5 +1,5 @@
 import numpy as np
-import time
+from datetime import datetime
 
 
 def generate_timeline(days, dosing):
@@ -44,4 +44,12 @@ def trans_ke_thalf(ke):
 
 def trans_thalf_ke(thalf):
     return 0.693/(thalf)
+
+
+def trans_secs_to_date(start, seconds_array):
+    seconds = list(start + seconds_array)
+    date = []
+    for second in seconds:
+        date.append(datetime.fromtimestamp(second).strftime("%A, %B %d, %Y %I:%M:%S"))
+    return date
 
