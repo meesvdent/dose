@@ -3,9 +3,9 @@ from scipy import integrate
 
 
 class OneCompModel(object):
-    X0 = [0]
     
     def __init__(self, doses, ke, kabs):
+        self.X0 = [0]
         self.doses = doses
         self.ke = ke
         self.kabs = kabs

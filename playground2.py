@@ -1,4 +1,5 @@
 import helpers
+import visualisation
 from models import OneCompModel
 import matplotlib.pyplot as plt
 
@@ -20,12 +21,12 @@ ke = helpers.trans_thalf_ke(4*3600)
 print(ke)
 
 model = OneCompModel(time_conc, ke, 1)
-X, _ = model.integrate(t)
+X, infodict = model.integrate(t)
 
 print(X)
 
 plt.plot(X, t)
 plt.show()
 
-
+visualisation.plot_conc(t, X, 2)
 

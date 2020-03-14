@@ -5,8 +5,8 @@ from visualisation import plot_conc
 
 t = np.linspace(0, 24*3600, 24*3600)
 
-dose = [0.160]  # grams, seconds
-time = [0.001]
+dose = [0.160, 0.160]  # grams, seconds
+time = [0.001, 7200]
 molecularMass = 194.19  # Caffeine
 
 patientMass = 75  # kg
@@ -26,3 +26,5 @@ delta_abs = model.delta_abs(amount_unabs)
 X, infodict = model.integrate(t)
 
 plot_conc(t, X, 2)
+
+#hellooooo
