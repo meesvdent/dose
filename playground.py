@@ -26,5 +26,3 @@ delta_abs = model.delta_abs(amount_unabs)
 X, infodict = model.integrate(t)
 
 plot_conc(t, X, 2)
-
-# update

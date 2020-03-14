@@ -40,3 +40,4 @@ class OneCompModel(object):
         X, infodict = integrate.odeint(self.dX_dt, self.X0, t, full_output=True)
         return X, infodict
 
+# update!!
