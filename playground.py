@@ -12,15 +12,9 @@ molecularMass = 194.19  # Caffeine
 patientMass = 75  # kg
 DV = 0.625*patientMass  # L/kg, for caffeine
 ke = trans_thalf_ke(4*3600)
-print(ke)
 
 dose_conc = calc_dose_conc(dose, molecularMass, DV)
 time_conc = [list(a) for a in zip(time, dose_conc)]
-
-print(list(time_conc))
-
-print("time_conc: ", time_conc, print(",ke: "), ke, print(",kabs: "), 0.0055)
-
 
 model = OneCompModel(time_conc, ke, 0.0055)
 amount_unabs = model.calc_unabs(t)
@@ -29,8 +23,3 @@ delta_abs = model.delta_abs(amount_unabs)
 X, infodict = model.integrate(t)
 
 plot_conc(t, X, 2)
-
-
-
-
-# hello
