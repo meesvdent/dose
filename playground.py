@@ -19,6 +19,9 @@ time_conc = [list(a) for a in zip(time, dose_conc)]
 
 print(list(time_conc))
 
+print("time_conc: ", time_conc, print(",ke: "), ke, print(",kabs: "), 0.0055)
+
+
 model = OneCompModel(time_conc, ke, 0.0055)
 amount_unabs = model.calc_unabs(t)
 delta_abs = model.delta_abs(amount_unabs)
@@ -26,3 +29,8 @@ delta_abs = model.delta_abs(amount_unabs)
 X, infodict = model.integrate(t)
 
 plot_conc(t, X, 2)
+
+
+
+
+# hello
