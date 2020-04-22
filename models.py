@@ -30,6 +30,7 @@ class OneCompModel(object):
         return amount_unabs * self.kabs
 
     def dIblood_dt(self, X, t):
+        print(t)
         dIb_dt = self.kabs * self.calc_unabs(t) - X[0] * self.ke
         return dIb_dt
 
