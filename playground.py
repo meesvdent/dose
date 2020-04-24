@@ -6,7 +6,7 @@ from visualisation import plot_conc
 t = np.linspace(0, 24*3600, 24*3600+1)
 
 dose = [0.160, 0.160]  # grams, seconds
-time = [0.001, 4*3600]
+time = [3600, 4*3600]
 molecularMass = 194.19  # Caffeine
 
 patientMass = 75  # kg
