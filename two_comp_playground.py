@@ -9,8 +9,10 @@ time = 3600  # start drinking at t=3600s
 ingestion_dur = 20*60  # x mins of drinking at steady pace
 
 dose = []
-for i in range(1):
+for i in range(3):
     dose.append([dose_conc, i*3600, 10*60])
+
+print(dose)
 
 start = [0, 0, 0]  # start alcohol conc in all three comps
 

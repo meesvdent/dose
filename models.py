@@ -21,9 +21,8 @@ class KineticsModel(object):
 
     def pulse(self, t):
         tot = 0
-        for dose in self.doses:
-            for mass, ing_time, ingestion_dur in dose:
-                tot += self.step(t-ing_time) * self.step((ing_time+ingestion_dur)-t) * mass/ingestion_dur
+        for mass, ing_time, ingestion_dur in self.doses:
+            tot += self.step(t-ing_time) * self.step((ing_time+ingestion_dur)-t) * mass/ingestion_dur
         return tot
 
     def dX_dt(self, X, t):
