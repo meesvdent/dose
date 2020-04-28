@@ -1,8 +1,8 @@
-from models import PietersModel
+from models import PietersModel, SourceOneCompFirstOrder
 import numpy as np
 import matplotlib.pyplot as plt
 
-dose_mass = 10  # grams of alcohol
+dose_mass = 20  # grams of alcohol
 dv = 0.6 * 75
 dose_conc = dose_mass/dv
 time = 3600  # start drinking at t=3600s
@@ -15,11 +15,14 @@ for i in range(1):
 start = [0, 0, 0]  # start alcohol conc in all three comps
 
 for a in [-10, 10]:
-    ex = PietersModel(X0=start, dose=dose, k12=5.55 / 3600, k23=7.05 / 3600, vmax=0.47 / 3600, km=0.38, a=a)
+    ex = PietersModel(X0=start, doses=dose, k12=5.55 / 3600, k23=7.05 / 3600, vmax=0.47 / 3600, km=0.38, a=a)
+    soc = SourceOneCompFirstOrder(X0=[0, 0], doses=dose, k_s1 = 0.0001, k_ex=0.001)
 
-    t = np.linspace(0, 5*3600, 5*60+1)  # simulate for 5 hours at 1 second resolution
+    t = np.linspace(0, 7*3600, 7*60+1)  # simulate for 5 hours at 1 second resolution
 
-    X, infodict = ex.integrate(t)
+    X = ex.integrate(t)
+
+    #X = soc.integrate(t)
 
     dif = []
     for i in range(len(t)):
@@ -35,4 +38,7 @@ for a in [-10, 10]:
     plt.plot(t, dif)
 
     plt.show()
+
+
+print(comp3)
 
