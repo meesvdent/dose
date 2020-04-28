@@ -8,7 +8,7 @@ class KineticsModel(object):
         """
 
         :param X0: n dims array for n comps in model
-        :param doses: array containing dose arrays [[dose (grams), time, duration], ]
+        :param doses: array containing dose arrays [[dose (mol/L), time, duration], ]
         """
         self.X0 = X0
         self.doses = doses
@@ -21,8 +21,9 @@ class KineticsModel(object):
 
     def pulse(self, t):
         tot = 0
-        for mass, ing_time, ingestion_dur in self.doses:
-            tot += self.step(t-ing_time) * self.step((ing_time+ingestion_dur)-t) * mass/ingestion_dur
+        for dose in self.doses:
+            for mass, ing_time, ingestion_dur in dose:
+                tot += self.step(t-ing_time) * self.step((ing_time+ingestion_dur)-t) * mass/ingestion_dur
         return tot
 
     def dX_dt(self, X, t):
