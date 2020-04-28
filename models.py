@@ -1,5 +1,6 @@
 import numpy as np
-from scipy import integrate
+from scipy.integrate import odeint
+
 
 class OneCompModel(object):
     
@@ -29,7 +30,6 @@ class OneCompModel(object):
         return amount_unabs * self.kabs
 
     def dIblood_dt(self, X, t):
-        print(t)
         dIb_dt = self.kabs * self.calc_unabs(t) - X[0] * self.ke
         return dIb_dt
 
@@ -37,7 +37,7 @@ class OneCompModel(object):
         return np.array([self.dIblood_dt(X, t)])
 
     def integrate(self, t):
-        X, infodict = integrate.odeint(self.dX_dt, self.X0, t, full_output=True)
+        X, infodict = odeint(self.dX_dt, self.X0, t, full_output=True)
         return X, infodict
 
 
@@ -83,6 +83,6 @@ class PietersModel:
         return dX_dt
 
     def integrate(self, t_span):
-        X , infodict = odeint(self.dX_dt, self.X0, t_span, full_output=True)
+        X , infodict = odeint(self.dX_dt, self.X0, t_span, hmax=1, full_output=True)
         return X, infodict
 
