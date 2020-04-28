@@ -5,6 +5,11 @@ from scipy.integrate import odeint
 class KineticsModel(object):
     
     def __init__(self, X0, doses):
+        """
+
+        :param X0: n dims array for n comps in model
+        :param doses: array containing dose arrays [[dose (grams), time, duration], ]
+        """
         self.X0 = X0
         self.doses = doses
 
@@ -21,7 +26,7 @@ class KineticsModel(object):
         return tot
 
     def dX_dt(self, X, t):
-        return np.array([])
+        return np.array([])  # functions to be integrated
 
     def integrate(self, t):
         """The integration function. Integrates differential equations defined in subclass dX_dt function.
