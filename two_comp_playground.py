@@ -6,17 +6,17 @@ dose_mass = 20  # grams of alcohol
 dv = 0.6 * 75
 dose_conc = dose_mass/dv
 time = 3600  # start drinking at t=3600s
-ingestion_dur = 20*60  # x mins of drinking at steady pace
+ingestion_dur = 0  # x mins of drinking at steady pace
 
 dose = []
 for i in range(3):
-    dose.append([dose_conc, i*3600, 10*60])
+    dose.append([dose_conc, i*3600, 0])
 
 print(dose)
 
 start = [0, 0, 0]  # start alcohol conc in all three comps
 
-for a in [-10, 10]:
+for a in [0.42]:
     ex = PietersModel(X0=start, doses=dose, k12=5.55 / 3600, k23=7.05 / 3600, vmax=0.47 / 3600, km=0.38, a=a)
     soc = SourceOneCompFirstOrder(X0=[0, 0], doses=dose, k_s1 = 0.0001, k_ex=0.001)
 
@@ -25,6 +25,7 @@ for a in [-10, 10]:
     X = ex.integrate(t)
 
     #X = soc.integrate(t)
+    print(f"shape array {X.shape[1]}")
 
     dif = []
     for i in range(len(t)):
