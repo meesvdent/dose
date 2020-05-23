@@ -2,7 +2,7 @@ from models import PietersModel, SourceOneCompFirstOrder
 import numpy as np
 import matplotlib.pyplot as plt
 
-dose_mass = 20  # grams of alcohol
+dose_mass = 10  # grams of alcohol
 dv = 0.6 * 75
 dose_conc = dose_mass/dv
 time = 3600  # start drinking at t=3600s
@@ -38,10 +38,10 @@ for a in [0.42]:
     plt.plot(t, comp1)
     plt.plot(t, comp2)
     plt.plot(t, comp3)
-    plt.plot(t, dif)
+    #plt.plot(t, dif)
 
     plt.show()
 
-
-print(comp3)
+cmax = max(comp3)
+print(f'cmax: {cmax}')
 
