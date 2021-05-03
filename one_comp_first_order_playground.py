@@ -22,7 +22,7 @@ t = np.linspace(0, 7*3600, 7*60+1)  # simulate for 5 hours at 1 second resolutio
 
 X = ex.integrate(t)
 
-#X = soc.integrate(t)
+#X = soc.integrate(t) 
 print(f"shape array {X.shape[1]}")
 
 comp1 = X[:, 0]  # extract comp 1 (stomach)
