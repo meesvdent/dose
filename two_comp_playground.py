@@ -42,6 +42,6 @@ for a in [0.42]:
 
     plt.show()
 
-cmax = max(comp3)
+cmax = max(comp3) 
 print(f'cmax: {cmax}')
 
