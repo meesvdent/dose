@@ -32,7 +32,7 @@ class KineticsModel(object):
         return np.array([])  # functions to be integrated
 
     def integrate(self, t):
-        """The integration function. Integrates differential equations defined in subclass dX_dt function.
+        """The integration function. Integrates differential equations defined in subclass dX_dt function. 
 
         :param t: np.linspace
         :param functions: n dim. np.array containing functions to integrate over, should be defined in inherited class
